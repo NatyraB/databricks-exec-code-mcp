@@ -1,6 +1,7 @@
-#  Databricks MCP Code Execution Template via Databricks Command Execution API
+##  Databricks MCP Code Execution Template via Command Execution API
+This template streamlines and accelerates development in Databricks by leveraging the Databricks Command Execution API, exposed through an MCP server, to run and test code directly in Databricks. It also enables end-to-end pipeline deployment using vibecoding capabilities.
 
-## 🎯 What This Does
+### 🎯 What This Does
 
 This template enables AI assistants to:
 - ✅ Run, execute, test code directly to Databricks via the command execution API
@@ -9,22 +10,19 @@ This template enables AI assistants to:
 - ✅ Deploy to multiple environments (dev/staging/prod)
 - ✅ All from natural language prompts!
 
-**Just describe what you want → AI builds & deploys the complete pipeline.**
+**Just describe what you want → AI builds, tests the code and deploys the complete pipeline.**
 
 ---
 
+### 🚀 Quick Start
 
----
-
-## 🚀 Quick Start
-
-### 1. Clone This Repository
+#### 1. Clone This Repository
 
 ```bash
-cd vibe-databricks
+cd databricks-exec-code-mcp
 ```
 
-### 2. Configure MCP Servers
+#### 2. Configure MCP Servers
 
 Start the MCP Server
 
@@ -60,13 +58,19 @@ Restart Cursor.
 
 ---
 
-### Claude Code
+#### Claude Code
 
 File: `~/.config/claude/mcp.json`
 
 ```json
 {
   "mcpServers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer <YOUR_GITHUB_TOKEN>"
+      }
+    },
     "databricks-dev-mcp": {
       "type": "http",
       "url": "http://localhost:8000/message"
@@ -80,18 +84,25 @@ Restart Claude Code.
 **For Claude Desktop** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 ```json
 {
-  "mcpServers": {
-    "github": {
+  "mcpServers": [
+    {
+      "id": "github",
+      "type": "http",
       "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
         "Authorization": "Bearer <YOUR_GITHUB_TOKEN>"
       }
+    },
+    {
+      "id": "databricks-dev-mcp",
+      "type": "http",
+      "url": "http://localhost:8000/message"
     }
-  }
+  ]
 }
 ```
 
-### 3. Prepare Your Credentials
+#### 3. Prepare Your Credentials
 
 You'll need:
 - **Databricks Workspace URL**: `https://dbc-xxxxx.cloud.databricks.com`
@@ -99,35 +110,29 @@ You'll need:
 - **Unity Catalog Name**: e.g., `my_catalog`
 - **GitHub Repository**: Where to push the generated project
 
-### 4. Open in Your AI Client
+#### 4. Open in Your AI Client
 
 Open this folder in Cursor or add it to Claude Desktop, then start chatting 💬
 
  - In order to get started with some prompts, see [example_prompts/prompts.md](./example_prompts/prompts.md) for some ready-to-use examples.
+
 ---
 
-### 5. Default context to agentic coding tools
+#### 5. Default context to agentic coding tools
 
-** For Cursor **
+**For Cursor**
 
 Include the claude.md file following any of the below options:
   1. Navigate and add claude.md file in .cursor folder in your project root like project-name/.cursor/claude.md 
   2. Go to Settings-> Rules and Commands -> Toggle the button to include the claude.md in context and use @claude before your promp when interacting in the chat window.
 
-** For Claude code **
+**For Claude code**
 
 Navigate to the directory of your project where the claude.md file is residing i.e mcp-accl/vibe-databricks/
 
-
-## 💬 Example Prompts
-
-In order to get started with some prompts, see [example_prompts/prompts.md](./example_prompts/prompts.md) for some ready-to-use examples.
-
-
-
 ---
 
-## 🔐 GitHub Secrets Setup
+### 🔐 GitHub Secrets Setup
 
 After the AI creates your GitHub repository, add these secrets:
 
@@ -141,7 +146,7 @@ After the AI creates your GitHub repository, add these secrets:
 
 ---
 
-## 📁 What Gets Generated
+### 📁 What Gets Generated
 
 The AI will create a complete the project:
 
@@ -169,7 +174,7 @@ your-project/
 
 ---
 
-## 🌟 Features
+### 🌟 Features
 
 | Feature | Description |
 |---------|-------------|
@@ -180,16 +185,16 @@ your-project/
 
 ---
 
-## 🛠️ Troubleshooting
+### 🛠️ Troubleshooting
 
-### IP ACL Errors
+#### IP ACL Errors
 If you see "Source IP address is blocked", your workspace has IP restrictions. Options:
 1. Add GitHub Actions IP ranges to your workspace IP Access List
 2. Use a self-hosted GitHub runner
 
 ---
 
-## 📚 Resources
+### 📚 Resources
 
 - [Databricks Asset Bundles](https://docs.databricks.com/dev-tools/bundles/index.html)
 - [MLOps Deployment Patterns](https://docs.databricks.com/aws/en/machine-learning/mlops/deployment-patterns)
