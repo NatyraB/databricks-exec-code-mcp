@@ -84,14 +84,21 @@ Restart Claude Code.
 **For Claude Desktop** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 ```json
 {
-  "mcpServers": {
-    "github": {
+  "mcpServers": [
+    {
+      "id": "github",
+      "type": "http",
       "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
         "Authorization": "Bearer <YOUR_GITHUB_TOKEN>"
       }
+    },
+    {
+      "id": "databricks-dev-mcp",
+      "type": "http",
+      "url": "http://localhost:8000/message"
     }
-  }
+  ]
 }
 ```
 
