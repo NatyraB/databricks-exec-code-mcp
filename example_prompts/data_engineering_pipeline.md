@@ -9,14 +9,21 @@ Please use cluster ID <YOUR_CLUSTER_ID> to create the context and do your work.
 
 Follow the rules in the claude.md file.
 
-The task is to build a Data Engineering pipeline using Medallion Architecture on a dataset <DATASET_NAME> and deploy it in Databricks:and deploy it in Databricks:
+The task is to build a Data Engineering pipeline using Medallion Architecture on a dataset <YOUR_DATASET_NAME> and deploy it in Databricks:
 
+Steps:
 - Create a new schema/catalog to log all datasets and transformations.
 - Use the raw data from a source table in a certain catalog/schema.
 - Perform transformations to clean and standardize data, storing results in the Silver layer.
 - Aggregate and enrich data as required, storing results in the Gold layer.
 - Ensure all tables have proper metadata (column types, descriptions, primary/foreign keys where applicable)
 - Package the code via DABs and deploy the bundle in Databricks
+
+Configuration:
+- Catalog to use: <YOUR_CATALOG>
+- Databricks workspace: <YOUR_WORKSPACE_URL>
+
+Please start by checking the available MCP servers and let me know if you can use them.
 
 ```
 
